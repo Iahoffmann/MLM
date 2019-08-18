@@ -13,7 +13,8 @@ export const doneTasksReducer = createReducer(initialState,
     }),
     on(removeTask, (state, action) => {
         const newState: Task[] = cloneDeep(state);
-        newState.splice(action.index, 1);
+        const index = findIndex(newState, x => x.id === action.id);
+        newState.splice(index, 1);
         return newState;
     }),
 );
