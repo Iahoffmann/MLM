@@ -6,8 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TodoModule } from './todo/todo.module';
-import { undoneTasksReducer } from './todo/undoneTasks/undoneTasks.reducer';
-import { doneTasksReducer } from './todo/doneTasks/doneTasks.reducer';
+import { undoneTasksReducer } from './todo/state/undoneTasks/undoneTasks.reducer';
+import { doneTasksReducer } from './todo/state/doneTasks/doneTasks.reducer';
 
 @NgModule({
   declarations: [
