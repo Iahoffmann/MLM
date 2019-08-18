@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { addTask } from '../../state/undoneTasks/undoneTasks.actions';
+import { addTask } from '../../state/tasks/tasks.actions';
 import { Task } from '../../state/task';
 import { Validators, FormControl } from '@angular/forms';
 

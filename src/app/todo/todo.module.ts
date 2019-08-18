@@ -14,8 +14,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { TodoItemComponent } from './components/todo-item/todo-item.component';
-import { undoneTasksReducer } from './state/undoneTasks/undoneTasks.reducer';
-import { doneTasksReducer } from './state/doneTasks/doneTasks.reducer';
+import { tasksReducer } from './state/tasks/tasks.reducer';
 import { TaskAdderComponent } from './components/task-adder/task-adder.component';
 
 @NgModule({
@@ -28,8 +27,7 @@ import { TaskAdderComponent } from './components/task-adder/task-adder.component
     CommonModule,
     ReactiveFormsModule,
     StoreModule.forRoot({
-      undoneTasks: undoneTasksReducer,
-      doneTasks: doneTasksReducer
+      tasks: tasksReducer
     }),
     MatToolbarModule,
     MatDividerModule,
