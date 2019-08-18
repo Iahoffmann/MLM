@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { Task } from '../task';
 import { addTask, removeTask } from './doneTasks.actions';
-import { cloneDeep } from 'lodash';
+import { cloneDeep, findIndex } from 'lodash';
 
 export const initialState: Task[] = [];
 
