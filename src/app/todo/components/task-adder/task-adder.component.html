@@ -1,25 +1,19 @@
-<mat-expansion-panel>
-    <mat-expansion-panel-header>
-        <mat-panel-title>Add A Task</mat-panel-title>
-    </mat-expansion-panel-header>
 
-    <div>
-        <mat-form-field>
-            <mat-label>Task</mat-label>
-            <input matInput type="text" [formControl]="name" required>
-            <mat-error *ngIf="name.hasError('required')">A task description is required</mat-error>
-        </mat-form-field>
+<span class="header">Add A Task</span>
+<form [formGroup]='taskInputs' (submit)="onSubmit()">
+    <mat-form-field>
+        <mat-label>Task</mat-label>
+        <input matInput type="text" [formControl]="nameControl" required>
+        <mat-error *ngIf="nameControl.hasError('required')">A task description is required</mat-error>
+    </mat-form-field>
 
-        <mat-form-field>
-            <mat-label>Due Date</mat-label>
-            <input matInput [matDatepicker]="myDatepicker" [formControlName]="dueDate" required>
-            <mat-error *ngIf="dueDate.hasError('required')">A due date is required</mat-error>
-            <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
-            <mat-datepicker #myDatepicker></mat-datepicker>
-        </mat-form-field>
+    <mat-form-field>
+        <mat-label>Due Date</mat-label>
+        <input matInput [min]="minDate" [matDatepicker]="myDatepicker" [formControl]="dueDateControl">
+        <mat-error *ngIf="dueDateControl.hasError('matDatepickerMin')">Due date is in the past</mat-error>
+        <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #myDatepicker></mat-datepicker>
+    </mat-form-field>
 
-        <button type="submit" mat-mini-fab><mat-icon>add</mat-icon></button>
-    </div>
-
-    
-</mat-expansion-panel>
+    <button type="submit" mat-mini-fab><mat-icon>add</mat-icon></button>
+</form>

@@ -6,7 +6,8 @@ export class Task {
     done = false;
     id: string;
 
-    constructor() {
+    constructor(init?: Partial<Task>) {
+        Object.assign(this, {...init});
         this.id = uniqueId();
     }
 }

@@ -1,27 +1,41 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { addTask } from '../../state/tasks/tasks.actions';
 import { Task } from '../../state/task';
-import { Validators, FormControl } from '@angular/forms';
+import { Validators, FormControl, FormGroup } from '@angular/forms';
+import { TasksState } from '../../state/tasks/tasks.reducer';
 
 @Component({
   selector: 'app-task-adder',
   templateUrl: './task-adder.component.html',
   styleUrls: ['./task-adder.component.sass']
 })
-export class TaskAdderComponent implements OnInit {
+export class TaskAdderComponent {
+  taskInputs = new FormGroup({
+    name: new FormControl('', [Validators.required]),
+    dueDate: new FormControl('', [])
+  });
 
-  task = new Task();
-  name = new FormControl('', [Validators.required]);
-  dueDate = new FormControl('', [Validators.required]);
-
-  constructor(private store: Store<{}>) { }
-
-  ngOnInit() {
+  get nameControl() {
+    return this.taskInputs.controls.name;
   }
+
+  get dueDateControl() {
+    return this.taskInputs.controls.dueDate;
+  }
+
+  minDate = new Date();
+
+  constructor(private store: Store<TasksState>) { }
 
   onSubmit() {
-    this.store.dispatch(addTask(this.task));
-  }
+    const task = new Task({
+      name: this.nameControl.value as string,
+      dueDate: this.dueDateControl.value === '' ? null : this.dueDateControl.value
+    });
+    this.store.dispatch(addTask(task));
 
+    this.taskInputs.reset();
+    this.taskInputs.updateValueAndValidity();
+  }
 }

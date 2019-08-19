@@ -7,26 +7,26 @@ export interface TasksState {
     tasks: Task[];
 }
 
-export const initialState: TasksState = {
-    tasks: []
-};
+export const taskStateKey = 'tasks';
+export const initialState: Task[] = [];
 
 export const tasksReducer = createReducer(initialState,
     on(addTask, (state, action) => {
+        const newTask = new Task(action);
         const newState = cloneDeep(state);
-        newState.tasks.concat(action) ;
+        newState.push(newTask);
         return newState;
     }),
     on(removeTask, (state, action) => {
         const newState = cloneDeep(state);
-        const index = findIndex(newState.tasks, x => x.id === action.id);
-        newState.tasks.splice(index, 1);
+        const index = findIndex(newState, x => x.id === action.id);
+        newState.splice(index, 1);
         return newState;
     }),
     on(replaceTask, (state, action) => {
         const newState = cloneDeep(state);
-        const index = findIndex(newState.tasks, x => x.id === action.id);
-        newState.tasks[index] = action.newTask;
+        const index = findIndex(newState, x => x.id === action.id);
+        newState[index] = action.newTask;
         return newState;
     })
 );

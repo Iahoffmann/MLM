@@ -4,6 +4,6 @@
 <mat-divider></mat-divider>
 <app-task-adder></app-task-adder>
 <mat-divider></mat-divider>
-<app-todo-list></app-todo-list>
+<app-todo-list [tasks]="undoneTasks$ | async" [title]="'To Do'"></app-todo-list>
 <mat-divider></mat-divider>
-<app-todo-list></app-todo-list>
+<app-todo-list [tasks]="doneTasks$ | async" [title]="'Done'"></app-todo-list>

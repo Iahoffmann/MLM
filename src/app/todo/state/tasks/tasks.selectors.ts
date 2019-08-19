@@ -1,8 +1,9 @@
-import { TasksState } from './tasks.reducer';
-import { createSelector } from '@ngrx/store';
+import { createSelector, createFeatureSelector } from '@ngrx/store';
 import { filter } from 'lodash';
+import { Task } from '../task';
+import { TasksState, taskStateKey } from './tasks.reducer';
 
-export const selectTasks = (state: TasksState) => state.tasks;
+export const selectTasks = createFeatureSelector<TasksState, Task[]>(taskStateKey);
 
 export const selectUndoneTasks = createSelector(selectTasks, (tasks) => filter(tasks, task => !task.done));
 
