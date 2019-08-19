@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { TasksState } from './todo/state/tasks/tasks.reducer';
-import { selectUndoneTasks, selectDoneTasks } from './todo/state/tasks/Tasks.selectors';
+import { selectUndoneTasks, selectDoneTasks } from './todo/state/tasks/tasks.selectors';
 
 @Component({
   selector: 'app-root',

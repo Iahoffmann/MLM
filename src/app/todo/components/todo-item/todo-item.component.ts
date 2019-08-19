@@ -16,7 +16,6 @@ export class TodoItemComponent implements OnInit {
   doneControl = new FormControl(this.task.done, []);
   minDate = new Date();
 
-
   taskDetailsControls = new FormGroup({
     name: new FormControl('', [Validators.required]),
     dueDate: new FormControl('', [])
@@ -35,6 +34,11 @@ export class TodoItemComponent implements OnInit {
   ngOnInit() {
     this.nameControl.setValue(this.task.name);
     this.dueDateControl.setValue(this.task.dueDate);
+
+    if (this.task.done) {
+      this.nameControl.disable();
+      this.dueDateControl.disable();
+    }
 
     this.dueDateControl.valueChanges.subscribe(() => {
       this.detailChange();
