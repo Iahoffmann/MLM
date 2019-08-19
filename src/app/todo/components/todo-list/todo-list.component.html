@@ -2,7 +2,7 @@
     <span>{{title}}</span>
 </mat-toolbar>
 <mat-list>
-    <mat-list-item *ngFor="let task of tasks">
+    <mat-list-item *ngFor="let task of tasks" class="listItem">
         <app-todo-item [task]="task"></app-todo-item>
     </mat-list-item>
 </mat-list>

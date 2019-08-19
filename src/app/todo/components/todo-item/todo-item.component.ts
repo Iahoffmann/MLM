@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Task } from '../../state/task';
 import { TasksState } from '../../state/tasks/tasks.reducer';
-import { replaceTask } from '../../state/tasks/tasks.actions';
+import { replaceTask, removeTask } from '../../state/tasks/tasks.actions';
 
 @Component({
   selector: 'app-todo-item',
@@ -59,6 +59,10 @@ export class TodoItemComponent implements OnInit {
       dueDate: this.dueDateControl.value === '' ? null : this.dueDateControl.value
     });
     this.store.dispatch(replaceTask(newTask));
+  }
+
+  remove() {
+    this.store.dispatch(removeTask({id: this.task.id}));
   }
 
 }
