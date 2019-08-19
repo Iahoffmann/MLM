@@ -1,1 +1,16 @@
-<span>{{task.name}}</span>
+<mat-checkbox (change)="toggleDone()" [checked]="task.done"></mat-checkbox>
+<form [formGroup]='taskDetailsControls' (change)="detailChange()">
+    <mat-form-field>
+        <mat-label>Task</mat-label>
+        <input matInput type="text" [formControl]="nameControl" required>
+        <mat-error *ngIf="nameControl.hasError('required')">A task description is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Due Date</mat-label>
+        <input matInput [min]="minDate" [matDatepicker]="myDatepicker" [formControl]="dueDateControl">
+        <mat-error *ngIf="dueDateControl.hasError('matDatepickerMin')">Due date is in the past</mat-error>
+        <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #myDatepicker></mat-datepicker>
+    </mat-form-field>
+</form>

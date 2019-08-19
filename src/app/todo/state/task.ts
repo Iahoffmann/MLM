@@ -1,13 +1,12 @@
-import { uniqueId } from 'lodash';
+import { uniqueId, isUndefined } from 'lodash';
 
 export class Task {
     name = '';
     dueDate?: Date;
     done = false;
-    id: string;
+    id: string = uniqueId();
 
     constructor(init?: Partial<Task>) {
         Object.assign(this, {...init});
-        this.id = uniqueId();
     }
 }

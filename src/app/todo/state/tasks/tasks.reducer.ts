@@ -12,9 +12,8 @@ export const initialState: Task[] = [];
 
 export const tasksReducer = createReducer(initialState,
     on(addTask, (state, action) => {
-        const newTask = new Task(action);
         const newState = cloneDeep(state);
-        newState.push(newTask);
+        newState.push(new Task(action));
         return newState;
     }),
     on(removeTask, (state, action) => {
@@ -26,7 +25,7 @@ export const tasksReducer = createReducer(initialState,
     on(replaceTask, (state, action) => {
         const newState = cloneDeep(state);
         const index = findIndex(newState, x => x.id === action.id);
-        newState[index] = action.newTask;
+        newState[index] = new Task(action);
         return newState;
     })
 );
